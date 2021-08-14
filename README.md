@@ -3,7 +3,7 @@
 This is a Port of my NPM package [DNS_Host](https://www.npmjs.com/package/@queekusme/dns_host).
 As such recieving UInt8Array data from `Deno.listenDatagram` will most likely need converting to use the [Buffer compatibility class](https://deno.land/std/node/buffer.ts) within Deno's std libs
 
-Dns Types is a set of types to assist with the creation of DNS Requests and Responses.
+DNS Types is a set of types to assist with the creation of DNS Requests and Responses.
 
 Each Type has the ability to decode from and encode to a buffer which can be recieved from a raw request.
 
