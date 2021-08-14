@@ -13,9 +13,9 @@ const protocol = new DNSProtocol();
 protocol.decode(/* Raw (Node Compatibility) Buffer containing the DNS Request/Response */);
 
 const questionsCount = protocol.header.qdCount.value;
-const answersCount = protocol.anCount.qdCount.value;
-const authoritiesCount = protocol.nsCount.qdCount.value;
-const additionalsCount = protocol.arCount.qdCount.value;
+const answersCount = protocol.header.anCount.value;
+const authoritiesCount = protocol.header.nsCount.value;
+const additionalsCount = protocol.header.arCount.value;
 ```
 
 DNSProtocol is the main entrypoint type and when decode is called will recurse through data to decode the header and any provided questions etc... in one go.
