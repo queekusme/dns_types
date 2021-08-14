@@ -41,5 +41,5 @@ DNSProtocolResourceRecord.of(queekus_com_name, Type.A, Class.IN, 60 * 5, new IPv
 - This module was designed for me to learn how the DNS protocol works, there may be gaps/inconsistencies, especially, for example, with regards to DNSSec requirements.
 
 ## Known Gaps
-- DnsSec Requirements
+- DNSSec Requirements
 - Decoding a Response doesn't decode 'Answers', 'Authorities' and 'Additionals' sections but can encode all of those if provided
