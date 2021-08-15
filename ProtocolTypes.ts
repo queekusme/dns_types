@@ -211,5 +211,4 @@ export enum Class
 }
 
 // Allow anything which can be parsed as an accepted type
-// deno-lint-ignore no-explicit-any
-export type DNSProtocolResourceRecordAcceptedTypes = Parser<any>;
+export type DNSProtocolResourceRecordAcceptedTypes = Parser;

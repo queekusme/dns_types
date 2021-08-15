@@ -1,7 +1,8 @@
 import { Buffer } from "./deps.ts";
 import Parser from "./Parser.ts";
+import SimpleGetter from "./SimpleGetter.ts";
 
-export default class DomainName extends Parser<string>
+export default class DomainName extends Parser implements SimpleGetter<string>
 {
     public get value(): string { return this._domain; }
     public set value(value: string) { this._domain = value; }

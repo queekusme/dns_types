@@ -2,8 +2,11 @@ import { Buffer } from "./deps.ts";
 
 import { UInt16 } from "./UInt.ts";
 import Parser from "./Parser.ts";
+import SimpleGetter from "./SimpleGetter.ts";
 
-export class IPv4 extends Parser<string>
+import "./BufferCompat.ts";
+
+export class IPv4 extends Parser implements SimpleGetter<string>
 {
     public get value(): string { return this.address; }
     public set value(v: string) { this.address = v; }
@@ -31,7 +34,7 @@ export class IPv4 extends Parser<string>
     }
 }
 
-export class IPv6 extends Parser<string>
+export class IPv6 extends Parser implements SimpleGetter<string>
 {
     public get value(): string { return this.address; }
     public set value(v: string) { this.address = v; }
@@ -62,7 +65,10 @@ export class IPv6 extends Parser<string>
     public decode(data: Buffer): number
     {
         const buff: Buffer = Buffer.from(data); // Copy to preserve original data
+
+        // @ts-ignore Implemented in BufferCompat.ts
         buff.swap16();
+
         this.address = [...new Uint16Array(buff.buffer, buff.byteOffset, buff.length / 2)].map((part: number) => {return part.toString(16);}).join(":");
 
         return 16; // 8 * 2 (octets)

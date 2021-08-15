@@ -1,7 +1,8 @@
 import { Buffer } from "./deps.ts";
 import Parser from "./Parser.ts";
+import SimpleGetter from "./SimpleGetter.ts";
 
-abstract class UInt extends Parser<number>
+abstract class UInt extends Parser implements SimpleGetter<number>
 {
     public get value() { return this._value; }
     public set value(value: number) { this._value = value % this.limit; }

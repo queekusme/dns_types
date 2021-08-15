@@ -5,8 +5,9 @@ import { Bit, Type, Class, Opcode, QR, DNSProtocolResourceRecordAcceptedTypes } 
 import Parser from "./Parser.ts";
 import { UInt4, UInt16, UInt32 } from "./UInt.ts";
 import DomainName from "./DomainName.ts";
+import SimpleGetter from "./SimpleGetter.ts";
 
-export class DNSProtocolHeader extends Parser<undefined>
+export class DNSProtocolHeader extends Parser implements SimpleGetter<undefined>
 {
     public get value(): undefined { return undefined;  }
     public set value(v: undefined) { } // eslint-disable-line @typescript-eslint/no-empty-function
@@ -188,10 +189,8 @@ export class DNSProtocolHeader extends Parser<undefined>
     }
 }
 
-export class DNSProtocolQuestion extends Parser<undefined>
+export class DNSProtocolQuestion extends Parser
 {
-    public get value(): undefined { return undefined;  }
-    public set value(v: undefined) { } // eslint-disable-line @typescript-eslint/no-empty-function
 
     /**
      * A domain name represented as a sequence of labels, where
@@ -245,12 +244,8 @@ export class DNSProtocolQuestion extends Parser<undefined>
     }
 }
 
-export class DNSProtocolResourceRecord<T extends DNSProtocolResourceRecordAcceptedTypes> extends Parser<undefined>
+export class DNSProtocolResourceRecord<T extends DNSProtocolResourceRecordAcceptedTypes> extends Parser
 {
-
-    public get value(): undefined { return undefined;  }
-    public set value(v: undefined) { } // eslint-disable-line @typescript-eslint/no-empty-function
-
     /**
      * A domain name to which this resource record pertains
      *
@@ -374,10 +369,8 @@ export class DNSProtocolResourceRecord<T extends DNSProtocolResourceRecordAccept
     }
 }
 
-export class DNSProtocol extends Parser<undefined>
+export class DNSProtocol extends Parser
 {
-    public get value(): undefined { return undefined;  }
-    public set value(v: undefined) { } // eslint-disable-line @typescript-eslint/no-empty-function
     /**
      * The header of this DNS Packet
      */
@@ -406,7 +399,7 @@ export class DNSProtocol extends Parser<undefined>
     // deno-lint-ignore no-explicit-any
     public readonly additionals: DNSProtocolResourceRecord<any>[] = [];
 
-    private static _encode<T extends Parser<K>, K>(parsable: T): [Buffer, number]
+    private static _encode<T extends Parser>(parsable: T): [Buffer, number]
     {
         const data: Buffer = parsable.encode();
 
